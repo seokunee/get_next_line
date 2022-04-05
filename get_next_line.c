@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:21 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/05 01:27:22 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:23:25 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,37 @@ char	*ft_find_line(char **line, ssize_t rdsize)
 {
 	ssize_t	i;
 	char	*tmp;
+	char	*top_line;
 
 	tmp = *line;
 	n_index = ft_ckeck_newline(*line);
 	if (n_index >= 0)
 	{
-		tmp = ft_strl
-	}
+		top_line = ft_substr(*line, 0, n_index + 1);
+		if (!top_line)
+			return (NULL);
+		*line = ft_substr(*line), n_index, ft_strlen(*line));
+ 	}
 	else
 	{
-
+		tmp = ft_substr(*line, )
 	}
 	i = 0;
-	*lin
+	*line
 	while ()
 }
-
 
 char	*get_next_line(int fd)
 {
 	char	*buf[BUFFER_SIZE + 1];
-	char	*strs[OPEN_MAX];
+	char	*strs[OPEN_MAX + 3];
 	char	*tmp;
 	ssize_t	rdsize;
 
 	if (BUFFER_SIZE < 1 || fd < 0 || fd > OPEN_MAX)
 		return (0);
+	if (BUFFER_SIZE > SIZE_MAX)
+		BUFFER_SIZE = SIZE_MAX;
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (0);
