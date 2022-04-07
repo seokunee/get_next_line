@@ -6,9 +6,11 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:24 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/05 14:05:47 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/06 20:34:29 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 char	*ft_strdup(const char *s)
 {
@@ -66,7 +68,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	s_len = ft_strlen(s);
 	if ((size_t)start >= s_len)
 		return (ft_strdup(""));
-	if (s_len - (size_t)start - 1 > len)
+	if (s_len - (size_t)start > len)
 		sub = (char *)malloc(sizeof(char) * (len + 1));
 	else
 		sub = (char *)malloc(sizeof(char) * (s_len - start + 1));
@@ -79,5 +81,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		start++;
 	}
 	sub[i] = '\0';
+	ft_str_free((char *) s);
 	return (sub);
+}
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
