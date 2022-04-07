@@ -6,19 +6,19 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:21 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/06 20:35:39 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:30:24 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_str_free(char *str)
+static void	ft_str_free(char *str)
 {
 	free(str);
 	str = NULL;
 }
 
-int	ft_ckeck_newline(char *str)
+static int	ft_ckeck_newline(char *str)
 {
 	int	i;
 
@@ -34,7 +34,18 @@ int	ft_ckeck_newline(char *str)
 	return (-1);
 }
 
-char	*find_line_and_update_str(char **line, ssize_t rdsize)
+static ssize_t	read_file(int fd, char **buf)
+{
+	ssize_t		rdsize;
+
+	if (BUFFER_SIZE > SIZE_MAX)
+		rdsize = read(fd, *buf, SIZE_MAX);
+	else
+		rdsize = read(fd, *buf, BUFFER_SIZE);
+	return (rdsize);
+}
+
+static char	*find_line_and_update_str(char **line, ssize_t rdsize)
 {
 	char	*tmp;
 	char	*top_line;
@@ -63,35 +74,35 @@ char	*find_line_and_update_str(char **line, ssize_t rdsize)
 
 char	*get_next_line(int fd)
 {
-	char		*buf;
 	static char	*strs[OPEN_MAX];
+	char		*buf;
 	char		*tmp;
 	ssize_t		rdsize;
 
 	if (BUFFER_SIZE < 1 || fd < 0 || fd > OPEN_MAX)
-		return (0);
+		return (NULL);
 	if (BUFFER_SIZE > SIZE_MAX)
 		buf = (char *)malloc(sizeof(char) * (SIZE_MAX + 1));
 	else
 		buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (0);
-	rdsize = read(fd, buf, O_RDONLY);
+	rdsize = read_file(fd, &buf);
 	while (rdsize > 0)
 	{
 		buf[rdsize] = '\0';
 		if (!strs[fd])
 			strs[fd] = ft_strdup("");
 		if (!strs[fd])
-			return (0);
+			return (NULL);
 		tmp = strs[fd];
 		strs[fd] = ft_strjoin(tmp, buf);
 		if (!strs[fd])
-			return (0);
+			return (NULL);
 		ft_str_free(tmp);
 		if (ft_ckeck_newline(strs[fd]) >= 0)
 			break;
-		rdsize = read(fd, buf, BUFFER_SIZE);
+		rdsize = read_file(fd, &buf);
 	}
 	return (find_line_and_update_str(&strs[fd], rdsize));
 }

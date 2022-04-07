@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:24 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/06 20:34:29 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:51:45 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s)
 	i = 0;
 	str = (char *)malloc(sizeof(*s) * (ft_strlen(s) + 1));
 	if (!str)
-		return (0);
+		return (NULL);
 	while (s[i])
 	{
 		str[i] = s[i];
@@ -39,12 +39,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*str;
 
 	if (!s1 || !s2)
-		return (0);
+		return (NULL);
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!str)
-		return (0);
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (j < s1_len)
