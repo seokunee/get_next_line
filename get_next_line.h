@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:12 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/07 17:01:41 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:45:00 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@
 # endif
 
 char	*get_next_line(int fd);
+void	ft_str_free(char *str);
 
 char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 int		ft_strlen(const char *s);
 
 #endif

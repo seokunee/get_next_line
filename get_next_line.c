@@ -6,21 +6,23 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:21 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/07 17:30:24 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:28:12 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	ft_str_free(char *str)
+#include <stdio.h>
+
+void	ft_str_free(char *str)
 {
 	free(str);
 	str = NULL;
 }
 
-static int	ft_ckeck_newline(char *str)
+static size_t	ft_ckeck_newline(char *str)
 {
-	int	i;
+	size_t	i;
 
 	if (!str || !(*str))
 		return (-1);
@@ -57,18 +59,19 @@ static char	*find_line_and_update_str(char **line, ssize_t rdsize)
 	n_index = ft_ckeck_newline(*line);
 	if (n_index >= 0)
 	{
-		top_line = ft_substr(*line, 0, n_index + 1);
+		top_line = ft_substr(tmp, 0, n_index + 1);
 		if (!top_line)
 			return (NULL);
-		*line = ft_substr(*line, n_index + 1, ft_strlen(*line));
+		*line = ft_substr(tmp, n_index + 1, ft_strlen(*line));
 		if (!(*line))
+		{
+			ft_str_free(tmp);
 			return (NULL);
+		}
 	} 
 	else
-	{
-		top_line = ft_substr(*line, 0, ft_strlen(*line));
-		ft_str_free(*line);
-	}
+		top_line = ft_substr(tmp, 0, ft_strlen(*line));
+	ft_str_free(tmp);
 	return (top_line);
 }
 
@@ -99,10 +102,12 @@ char	*get_next_line(int fd)
 		strs[fd] = ft_strjoin(tmp, buf);
 		if (!strs[fd])
 			return (NULL);
-		ft_str_free(tmp);
 		if (ft_ckeck_newline(strs[fd]) >= 0)
 			break;
 		rdsize = read_file(fd, &buf);
 	}
+	ft_str_free(buf);
+	if(!strs[fd])
+		return (NULL);
 	return (find_line_and_update_str(&strs[fd], rdsize));
 }

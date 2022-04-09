@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:40:01 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/07 18:19:43 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/09 21:46:29 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,33 @@
 int	main(int ac, char **av)
 {
 	int	fd;
-	char buf[5];
-	int	size;
+	// char *buf[5];
+	// int	size;
 	int	i;
 	(void)ac;
 
 	i = 0;
 	fd = open(av[1], O_RDONLY);
-	size = read(fd,buf,100);
+	// size = read(fd,buf,100);
 	// buf[size] = 0;
-	printf("%s\n", buf);
+	// printf("%s\n", buf);
+	// get_next_line(fd);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+
 	// printf("%s", get_next_line(fd));
+
+	// strjoin test;
+	// char s1[] = "1234";
+	// char s2[] = "5678";
+	// char *tmp;
+
+	// tmp = ft_strjoin(s1, s2);
+	// printf("%s\n", tmp);
+	// free(tmp);
+
 	close(fd);
 	return (0);
 }
