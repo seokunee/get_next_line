@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:24 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/08 18:13:21 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/10 00:14:48 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!str)
 		return (NULL);
-	ft_str_free(s1);
 	i = 0;
 	j = 0;
 	while (j < s1_len)
@@ -53,6 +52,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	while (j < s2_len)
 		str[i++] = s2[j++];
+	ft_str_free(s1);
 	str[i] = '\0';
 	return (str);
 }

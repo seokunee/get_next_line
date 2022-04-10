@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:21 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/08 18:28:12 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/11 01:21:36 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,24 @@ static char	*find_line_and_update_str(char **line, ssize_t rdsize)
 	char	*tmp;
 	char	*top_line;
 	int		n_index;
-	
+
 	if (rdsize < 0)
 		return (NULL);
 	tmp = *line;
+	top_line = NULL;
 	n_index = ft_ckeck_newline(*line);
 	if (n_index >= 0)
 	{
 		top_line = ft_substr(tmp, 0, n_index + 1);
-		if (!top_line)
-			return (NULL);
 		*line = ft_substr(tmp, n_index + 1, ft_strlen(*line));
-		if (!(*line))
-		{
-			ft_str_free(tmp);
-			return (NULL);
-		}
-	} 
+	}
 	else
+	{
 		top_line = ft_substr(tmp, 0, ft_strlen(*line));
+		*line = NULL;
+	}
+	if (!top_line)
+		return (NULL);
 	ft_str_free(tmp);
 	return (top_line);
 }

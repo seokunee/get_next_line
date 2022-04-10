@@ -6,12 +6,13 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:40:01 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/09 21:46:29 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/11 01:21:54 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
+# include <fcntl.h>
 
 int	main(int ac, char **av)
 {
@@ -27,12 +28,19 @@ int	main(int ac, char **av)
 	// buf[size] = 0;
 	// printf("%s\n", buf);
 	// get_next_line(fd);
+	// get_next_line(fd);
+	// get_next_line(fd);
+	// get_next_line(fd);
+
+	
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 
-	// printf("%s", get_next_line(fd));
+
+	// printf("\n-----\n");
 
 	// strjoin test;
 	// char s1[] = "1234";
