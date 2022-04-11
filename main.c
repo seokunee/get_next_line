@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 19:40:01 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/11 01:21:54 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/11 18:27:26 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,28 @@
 #include <stdio.h>
 # include <fcntl.h>
 
+// int	main(void)
+// {
+// 	printf("%s", get_next_line(0));
+// 	return (0);
+// }
+
 int	main(int ac, char **av)
 {
 	int	fd;
-	// char *buf[5];
-	// int	size;
 	int	i;
 	(void)ac;
+	char *top;
 
 	i = 0;
 	fd = open(av[1], O_RDONLY);
-	// size = read(fd,buf,100);
-	// buf[size] = 0;
-	// printf("%s\n", buf);
-	// get_next_line(fd);
-	// get_next_line(fd);
-	// get_next_line(fd);
-	// get_next_line(fd);
-
-	
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-
-
-	// printf("\n-----\n");
-
-	// strjoin test;
-	// char s1[] = "1234";
-	// char s2[] = "5678";
-	// char *tmp;
-
-	// tmp = ft_strjoin(s1, s2);
-	// printf("%s\n", tmp);
-	// free(tmp);
-
-	close(fd);
+	while (1)
+	{
+		top = get_next_line(fd);
+		if (top)
+			printf("%s", top);
+		else
+			break ;
+	}
 	return (0);
 }

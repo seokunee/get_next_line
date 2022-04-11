@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:24 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/11 17:14:42 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/11 18:29:27 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
+#include <stdio.h>
+
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
@@ -70,9 +72,12 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if ((size_t)start >= s_len)
 		return (ft_strdup(""));
 	if (s_len - (size_t)start > len)
-		sub = (char *)malloc(sizeof(char) * (len + 1));
+		sub = (char *)malloc(sizeof(char) * (len + 2));
 	else
-		sub = (char *)malloc(sizeof(char) * (s_len - start + 1));
+	{
+		printf("start = %u", start);
+		sub = (char *)malloc(sizeof(char) * (s_len - start + 2));
+	}
 	if (!sub)
 		return (NULL);
 	while (s[i] && i < len)
