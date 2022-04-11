@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:24 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/10 00:14:48 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:14:42 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,10 @@ int	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+void	ft_str_free(char *str)
+{
+	free(str);
+	str = NULL;
 }
