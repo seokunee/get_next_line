@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:41:12 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/12 16:35:54 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:53:24 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-
-# ifndef OPEN_MAX
-#  define OPEN_MAX 2048
-# endif
 
 char	*get_next_line(int fd);
 

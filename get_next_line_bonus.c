@@ -6,7 +6,7 @@
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:43:15 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/12 17:43:58 by seokchoi         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:55:36 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static ssize_t	read_file(int fd, char **buf)
 {
 	ssize_t		rdsize;
 
-	if (BUFFER_SIZE > INT_MAX)
-		rdsize = read(fd, *buf, INT_MAX);
+	if (BUFFER_SIZE > (SIZE_MAX / 2))
+		rdsize = read(fd, *buf, (SIZE_MAX / 2));
 	else
 		rdsize = read(fd, *buf, BUFFER_SIZE);
 	return (rdsize);
@@ -96,8 +96,8 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE < 1 || fd < 0 || fd > OPEN_MAX)
 		return (NULL);
-	if (BUFFER_SIZE > INT_MAX)
-		buf = (char *)malloc(sizeof(char) * (INT_MAX + 1));
+	if (BUFFER_SIZE > (SIZE_MAX / 2))
+		buf = (char *)malloc(sizeof(char) * ((SIZE_MAX / 2) + 1));
 	else
 		buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
