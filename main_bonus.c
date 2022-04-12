@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seokchoi <seokchoi@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 19:40:01 by seokchoi          #+#    #+#             */
-/*   Updated: 2022/04/11 20:41:38 by seokchoi         ###   ########.fr       */
+/*   Created: 2022/04/11 20:41:21 by seokchoi          #+#    #+#             */
+/*   Updated: 2022/04/11 21:39:43 by seokchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@
 
 int	main(int ac, char **av)
 {
-	int	fd;
+	int	fd1;
+	int	fd2;
+	int	fd3;
 	int	i;
 	(void)ac;
 	char *top;
 
 	i = 0;
-	fd = open(av[1], O_RDONLY);
+	fd1 = open("exmaple/test1", O_RDONLY);
+	fd2 = open("exmaple/test2", O_RDONLY);
+	fd3 = open("exmaple/test3", O_RDONLY);
 	while (1)
 	{
-		top = get_next_line(fd);
+		top = get_next_line(fd1);
 		if (top)
 			printf("%s", top);
 		else
